@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:yes_no_app_leonardo_4sa/config/helpers/get_yes_no_answer.dart";
 import "package:yes_no_app_leonardo_4sa/domain/entities/message.dart";
 
 class ChatProvider extends ChangeNotifier {
@@ -8,6 +9,7 @@ class ChatProvider extends ChangeNotifier {
   ];
   //Controlador para manejar la posicion del scroll
   final ScrollController chatScrollController = ScrollController();
+  final GetYesNoAnswer getYesNoAnswer = GetYesNoAnswer();
 
   //Enviar un mensaje
   Future<void> sendMessage(String text) async {
@@ -15,9 +17,21 @@ class ChatProvider extends ChangeNotifier {
     final newMessage = Message(text: text, fromWho: FromWho.me);
     //Agrega un elemento a lista "messageList"
     messageList.add(newMessage);
+
+    if (text.endsWith('?')) {
+      herReply();
+    }
     //Notifica si algo de provider cambio para que se guarde en el estado
     notifyListeners();
     //Mueve el scroll
+    moveScrollToBottom();
+  }
+
+  Future<void> herReply() async {
+    final herMessage = await getYesNoAnswer.getAnswer();
+
+    messageList.add(herMessage);
+    notifyListeners();
     moveScrollToBottom();
   }
 
