@@ -3,6 +3,7 @@ import "package:yes_no_app_leonardo_4sa/domain/entities/message.dart";
 
 class MyMessageBubble extends StatelessWidget {
   final Message message;
+
   const MyMessageBubble({super.key, required this.message});
 
   @override
@@ -23,7 +24,7 @@ class MyMessageBubble extends StatelessWidget {
             ),
           ),
         ),
-        const SizedBox(height: 10)
+        const SizedBox(height: 5)
       ],
     );
   }
