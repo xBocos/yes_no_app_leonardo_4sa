@@ -37,6 +37,7 @@ class ChatProvider extends ChangeNotifier {
     await moveScrollToBottom();
   }
 
+  //Obtener el mensaje de la petición
   Future<void> herReply() async {
     final herMessage = await getYesNoAnswer.getAnswer();
 
@@ -46,7 +47,9 @@ class ChatProvider extends ChangeNotifier {
     // Imprimir la cantidad de mensajes después de agregar
     print("Cantidad de mensajes: ${messageList.length}");
 
+    //Notifica si algo de provider cambió para el estado
     notifyListeners();
+    //Mueve el scroll hasta el último mensaje recibido
     await moveScrollToBottom();
   }
 

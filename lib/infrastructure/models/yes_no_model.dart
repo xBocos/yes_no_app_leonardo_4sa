@@ -1,6 +1,9 @@
+//El modelo define que datos debe tener  la aplicación. Investugar MVC
+//Modelo = datos  Vista = Pantalla   Controlador = lógica
 import 'package:yes_no_app_leonardo_4sa/domain/entities/message.dart';
 
 class YesNoModel {
+  //Atributos de clase
   final String answer;
   final bool forced;
   final String image;
