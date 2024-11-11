@@ -12,11 +12,10 @@ class GetYesNoAnswer {
     //Almacenar la peticion GET en una variable
     final response = await _dio.get('https://yesno.wtf/api');
 
+    //Almacenar la data de la respuesta en una variable
     final yesNoModel = YesNoModel.fromJsonMap(response.data);
 
+    //Devolver la instancia de "Message" creada en el modelo
     return yesNoModel.toMessageEntity();
-
-    //Generar el error
-    throw UnimplementedError();
   }
 }

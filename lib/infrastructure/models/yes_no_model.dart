@@ -1,4 +1,4 @@
-//El modelo define que datos debe tener  la aplicación. Investugar MVC
+//El modelo define que datos debe tener  la aplicación. Investigar MVC
 //Modelo = datos  Vista = Pantalla   Controlador = lógica
 import 'package:yes_no_app_leonardo_4sa/domain/entities/message.dart';
 
@@ -14,6 +14,7 @@ class YesNoModel {
     required this.image,
   });
 
+  //factoryno necesariamente crea una nueva instancia
   factory YesNoModel.fromJsonMap(Map<String, dynamic> json) => YesNoModel(
         answer: json["answer"],
         forced: json["forced"],
@@ -27,7 +28,14 @@ class YesNoModel {
       };
 
   Message toMessageEntity() => Message(
-      text: answer == 'yes' ? 'Si' : 'No',
+      //Condicional ternario para darle valor a los mensajes
+      text: answer == 'yes'
+          ? 'yes'
+          : answer == 'No'
+              ? 'No'
+              : 'Quizás',
+      //Siempre va a ser ella
       fromWho: FromWho.hers,
+      //Será el gif
       imageUrl: image);
 }
