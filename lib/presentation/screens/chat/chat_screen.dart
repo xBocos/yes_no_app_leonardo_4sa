@@ -20,7 +20,22 @@ class ChatScreen extends StatelessWidget {
                 'https://s3p.sofifa.net/f195d613b06dd86bc8f9aa8ebd1574edd3ddb0cf.png'),
           ),
         ),
-        title: const Text('El comandante 👑'),
+        title: const Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'El comandante 👑', // Nombre de la persona
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text(
+              "En línea", // Estado "En línea"
+              style: TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
         centerTitle: false,
       ),
       body: _ChatView(),
@@ -39,21 +54,22 @@ class _ChatView extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-                child: ListView.builder(
-              controller: chatProvider.chatScrollController,
-              itemCount: chatProvider.messageList.length,
-              itemBuilder: (context, index) {
-                final message = chatProvider.messageList[index];
+              child: ListView.builder(
+                controller: chatProvider.chatScrollController,
+                itemCount: chatProvider.messageList.length,
+                itemBuilder: (context, index) {
+                  final message = chatProvider.messageList[index];
 
-                return (message.fromWho == FromWho.hers)
-                    ? HerMessageBubble(message: message)
-                    : MyMessageBubble(
-                        message: message,
-                      );
-              },
-            )),
+                  return (message.fromWho == FromWho.hers)
+                      ? HerMessageBubble(message: message)
+                      : MyMessageBubble(
+                          message: message,
+                        );
+                },
+              ),
+            ),
 
-            //Caja de Texto
+            // Caja de texto
             MessageFieldBox(
               onValue: (value) => chatProvider.sendMessage(value),
             ),

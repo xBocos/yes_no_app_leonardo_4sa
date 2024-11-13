@@ -30,8 +30,8 @@ class YesNoModel {
   Message toMessageEntity() => Message(
       //Condicional ternario para darle valor a los mensajes
       text: answer == 'yes'
-          ? 'yes'
-          : answer == 'No'
+          ? 'Si'
+          : answer == 'no'
               ? 'No'
               : 'Quizás',
       //Siempre va a ser ella
